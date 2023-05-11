@@ -11,28 +11,28 @@ import java.io.Serializable;
 @Table(name = "projets")
 public class projetEntity implements Serializable {
 
-    private String uuid;
+    @Id
+    private UUID uuid;
     private String name;
     private Number state;
     private String description;
 
     public projetEntity() {
-        this.uuid = UUID.randomUUID().toString();
+        this.uuid = UUID.randomUUID();
     }
 
     public projetEntity(String name, Number state, String description){
-        this.uuid = UUID.randomUUID().toString();
+        this.uuid = UUID.randomUUID();
         this.name = name;
         this.state = state;
         this.description = description;
     }
 
-    @Id
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 

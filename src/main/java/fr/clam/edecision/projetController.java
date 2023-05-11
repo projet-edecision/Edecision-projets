@@ -1,6 +1,7 @@
 package fr.clam.edecision;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +25,14 @@ public class projetController {
     }
 
     @GetMapping("/projet/{id}")
-    projetEntity one(@PathVariable String id) {
+    projetEntity one(@PathVariable UUID id) {
 
         return repositoryProjet.findById(id)
                 .orElseThrow(() -> new projetNotFoundException(id));
     }
 
     @PutMapping("/projet/{id}")
-    projetEntity edit(@RequestBody projetEntity newProjet, @PathVariable String id) {
+    projetEntity edit(@RequestBody projetEntity newProjet, @PathVariable UUID id) {
 
         return repositoryProjet.findById(id)
                 .map(equipe -> {
@@ -48,7 +49,7 @@ public class projetController {
     }
 
     @DeleteMapping("/projet/{id}")
-    void delete(@PathVariable String id) {
+    void delete(@PathVariable UUID id) {
         repositoryProjet.delete(one(id));
     }
 
